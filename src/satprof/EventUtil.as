@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-package satprof
+﻿package satprof
 {
 	import com.satprof.lib.EventUtils;
 	
@@ -35,8 +34,3 @@ package satprof
 		}
 	}
 }
-=======
-﻿import ../../../../
-
-// Ralph added this.  committed
->>>>>>> origin/master
