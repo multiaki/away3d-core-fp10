@@ -199,8 +199,8 @@ package away3d.containers
 			super(init);
 			
 			//create the joint for the bone
-			addChild(joint = new ObjectContainer3D());
-			//addChild(new Sphere({radius:3}));
+			add3dChild(joint = new ObjectContainer3D());
+			//add3dChild(new Sphere({radius:3}));
         }
 		
 		/**
@@ -222,7 +222,7 @@ package away3d.containers
         public override function cloneAll(object:Object3D = null):Object3D
         {
             var bone:Bone = (object as Bone) || new Bone();
-            bone.removeChild(joint);
+            removeChild(joint, bone);
             
             super.cloneAll(bone);
             

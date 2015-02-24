@@ -77,7 +77,7 @@ package away3d.loaders
 		{
 			var clipMesh:Mesh = new Mesh();
 			clipMesh.bothsides = true;
-			ObjectContainer3D(container).addChild(clipMesh);
+			add3dChild(clipMesh, ObjectContainer3D(container));
 			
 			VectorShapes.draw(clipMesh.geometry.graphics, shapeId, scaling);
 		}

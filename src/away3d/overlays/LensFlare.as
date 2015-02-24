@@ -71,7 +71,7 @@ package away3d.overlays
 				removeChild(_halo);
 			
 			_halo = sprite;
-			addChild(_halo);
+			add3dChild(_halo);
 		}
 		
 		public function setBurnClip(sprite:Sprite):void
@@ -84,7 +84,7 @@ package away3d.overlays
 			sprite.visible = false;
 			
 			_flares.push(sprite);
-			addChild(sprite);
+			add3dChild(sprite);
 			
 			sprite.cacheAsBitmap = cacheAsBitmap;
 		}

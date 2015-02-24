@@ -35,11 +35,11 @@
 			});
 			
 			target = new Object3D();
-            view.scene.addChild(target);
+            add3dChild(target, view.scene);
             view.camera.lookAt(target.position);
 			
 			addListener(view, Event.ADDED_TO_STAGE, init);
-			addChild(view);
+			add3dChild(view);
 			
 			 //stat+profiler
 			Tasks.init(this, desc);

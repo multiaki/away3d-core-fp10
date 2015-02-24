@@ -51,7 +51,7 @@ package away3d.core.session
     		
 			if (!_containers[view]) {
         		_container = _containers[view] = new Sprite();
-        		_container.addChild(_bitmapContainer);
+        		add3dChild(_bitmapContainer, _container);
         		return _container;
    			}
         	
@@ -110,7 +110,7 @@ package away3d.core.session
             }
             
             if (parent)
-            	parent.addChild(_sprite);
+            	add3dChild(_sprite, parent);
             else
             	layers.push(_sprite);
             

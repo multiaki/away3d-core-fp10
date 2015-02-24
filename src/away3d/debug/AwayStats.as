@@ -298,7 +298,7 @@ package away3d.debug
 			_top_bar = new Sprite;
 			_top_bar.graphics.beginFill(0, 0);
 			_top_bar.graphics.drawRect(0, 0, _WIDTH, 20);
-			addChild(_top_bar);
+			add3dChild(_top_bar);
 			
 			logo = new Shape;
 			logo.x = 9;
@@ -327,7 +327,7 @@ package away3d.debug
 			logo.graphics.curveTo(0, 2, 7.5, 6.3);
 			logo.graphics.curveTo(8.3, 6.7, 8, 7);
 			logo.graphics.lineTo(-8, 7);
-			_top_bar.addChild(logo);
+			add3dChild(logo, _top_bar);
 			
 			
 			// Color markers 
@@ -336,7 +336,7 @@ package away3d.debug
 			markers.graphics.drawRect(20, 7, 4, 4);
 			markers.graphics.beginFill(0x3388dd);
 			markers.graphics.drawRect(77, 7, 4, 4);
-			_top_bar.addChild(markers);
+			add3dChild(markers, _top_bar);
 			
 			// CURRENT FPS
 			fps_label_tf = new TextField();
@@ -346,7 +346,7 @@ package away3d.debug
 			fps_label_tf.x = 24;
 			fps_label_tf.y = 2;
 			fps_label_tf.selectable = false;
-			_top_bar.addChild(fps_label_tf);
+			add3dChild(fps_label_tf, _top_bar);
 			
 			_fps_tf = new TextField;
 			_fps_tf.defaultTextFormat = _data_format;
@@ -354,7 +354,7 @@ package away3d.debug
 			_fps_tf.x = fps_label_tf.x + 16;
 			_fps_tf.y = fps_label_tf.y;
 			_fps_tf.selectable = false;
-			_top_bar.addChild(_fps_tf);
+			add3dChild(_fps_tf, _top_bar);
 			
 			// AVG FPS
 			afps_label_tf = new TextField;
@@ -364,7 +364,7 @@ package away3d.debug
 			afps_label_tf.x = 81;
 			afps_label_tf.y = 2;
 			afps_label_tf.selectable = false;
-			_top_bar.addChild(afps_label_tf);
+			add3dChild(afps_label_tf, _top_bar);
 			
 			_afps_tf = new TextField;
 			_afps_tf.defaultTextFormat = _data_format;
@@ -372,7 +372,7 @@ package away3d.debug
 			_afps_tf.x = afps_label_tf.x + 12;
 			_afps_tf.y = afps_label_tf.y;
 			_afps_tf.selectable = false;
-			_top_bar.addChild(_afps_tf);
+			add3dChild(_afps_tf, _top_bar);
 			
 			
 			// Minimize / maximize button
@@ -386,7 +386,7 @@ package away3d.debug
 			_min_max_btn.graphics.lineTo(3, 2);
 			_min_max_btn.buttonMode = true;
 			addListener(_min_max_btn, MouseEvent.CLICK, _onMinMaxBtnClick);
-			_top_bar.addChild(_min_max_btn);
+			add3dChild(_min_max_btn, _top_bar);
 		}
 		
 		
@@ -399,14 +399,14 @@ package away3d.debug
 			_btm_bar = new Sprite();
 			_btm_bar.graphics.beginFill(0, 0.2);
 			_btm_bar.graphics.drawRect(0, 0, _WIDTH, 21);
-			addChild(_btm_bar);
+			add3dChild(_btm_bar);
 			
 			// Hit area for bottom bar (to avoid having textfields
 			// affect interaction badly.)
 			_btm_bar_hit = new Sprite;
 			_btm_bar_hit.graphics.beginFill(0xffcc00, 0);
 			_btm_bar_hit.graphics.drawRect(0, 1, _WIDTH, 20);
-			addChild(_btm_bar_hit);
+			add3dChild(_btm_bar_hit);
 			
 			
 			// Color markers
@@ -415,7 +415,7 @@ package away3d.debug
 			markers.graphics.drawRect(5, 4, 4, 4);
 			markers.graphics.beginFill(_POLY_COL);
 			markers.graphics.drawRect(5, 14, 4, 4);
-			_btm_bar.addChild(markers);
+			add3dChild(markers, _btm_bar);
 			
 			// CURRENT RAM
 			ram_label_tf = new TextField;
@@ -426,7 +426,7 @@ package away3d.debug
 			ram_label_tf.y = _UPPER_Y;
 			ram_label_tf.selectable = false;
 			ram_label_tf.mouseEnabled = false;
-			_btm_bar.addChild(ram_label_tf);
+			add3dChild(ram_label_tf, _btm_bar);
 			
 			_ram_tf = new TextField;
 			_ram_tf.defaultTextFormat = _data_format;
@@ -435,7 +435,7 @@ package away3d.debug
 			_ram_tf.y = ram_label_tf.y;
 			_ram_tf.selectable = false;
 			_ram_tf.mouseEnabled = false;
-			_btm_bar.addChild(_ram_tf);
+			add3dChild(_ram_tf, _btm_bar);
 			
 			// POLY COUNT
 			poly_label_tf = new TextField;
@@ -446,7 +446,7 @@ package away3d.debug
 			poly_label_tf.y = _LOWER_Y;
 			poly_label_tf.selectable = false;
 			poly_label_tf.mouseEnabled = false;
-			_btm_bar.addChild(poly_label_tf);
+			add3dChild(poly_label_tf, _btm_bar);
 			
 			_poly_tf = new TextField;
 			_poly_tf.defaultTextFormat = _data_format;
@@ -455,7 +455,7 @@ package away3d.debug
 			_poly_tf.y = poly_label_tf.y;
 			_poly_tf.selectable = false;
 			_poly_tf.mouseEnabled = false;
-			_btm_bar.addChild(_poly_tf);
+			add3dChild(_poly_tf, _btm_bar);
 		}
 		
 		
@@ -468,7 +468,7 @@ package away3d.debug
 			_diagram.graphics.drawRect(0, 0, _dia_bmp.width, _dia_bmp.height);
 			_diagram.graphics.endFill();
 			_diagram.y = 17;
-			addChild(_diagram);
+			add3dChild(_diagram);
 			
 			_diagram.graphics.lineStyle(1, 0xffffff, 0.03);
 			_diagram.graphics.moveTo(0, 0);
@@ -482,34 +482,34 @@ package away3d.debug
 			_fps_bar.graphics.drawRect(0, 0, _WIDTH, 4);
 			_fps_bar.x = 0;
 			_fps_bar.y = 16;
-			addChild(_fps_bar);
+			add3dChild(_fps_bar);
 			
 			// AVERAGE FPS
 			_afps_bar = new Shape;
 			_afps_bar.graphics.lineStyle(1, 0x3388dd, 1, false, LineScaleMode.NORMAL, CapsStyle.SQUARE);
 			_afps_bar.graphics.lineTo(0, 4);
 			_afps_bar.y = _fps_bar.y;
-			addChild(_afps_bar);
+			add3dChild(_afps_bar);
 			
 			// MINIMUM FPS
 			_lfps_bar = new Shape;
 			_lfps_bar.graphics.lineStyle(1, 0xff0000, 1, false, LineScaleMode.NORMAL, CapsStyle.SQUARE);
 			_lfps_bar.graphics.lineTo(0, 4);
 			_lfps_bar.y = _fps_bar.y;
-			addChild(_lfps_bar);
+			add3dChild(_lfps_bar);
 			
 			// MAXIMUM FPS
 			_hfps_bar = new Shape;
 			_hfps_bar.graphics.lineStyle(1, 0x00ff00, 1, false, LineScaleMode.NORMAL, CapsStyle.SQUARE);
 			_hfps_bar.graphics.lineTo(0, 4);
 			_hfps_bar.y = _fps_bar.y;
-			addChild(_hfps_bar);
+			add3dChild(_hfps_bar);
 			
 			
 			_mem_points = [];
 			_mem_graph = new Shape;
 			_mem_graph.y = _diagram.y + _diagram.height;
-			addChildAt(_mem_graph, 0);
+			add3dChildAt(_mem_graph, 0);
 		}
 		
 		
@@ -722,9 +722,9 @@ package away3d.debug
 
 			
 			_dragging = false; 
-			stage.removeEventListener(Event.MOUSE_LEAVE, _onMouseUpOrLeave);
-			stage.removeEventListener(MouseEvent.MOUSE_UP, _onMouseUpOrLeave);
-			stage.removeEventListener(MouseEvent.MOUSE_MOVE, _onMouseMove);
+			removeListener(stage, Event.MOUSE_LEAVE, _onMouseUpOrLeave);
+			removeListener(stage, MouseEvent.MOUSE_UP, _onMouseUpOrLeave);
+			removeListener(stage, MouseEvent.MOUSE_MOVE, _onMouseMove);
 		}
 		
 		
@@ -737,7 +737,7 @@ package away3d.debug
 		private function _onRemovedFromStage(ev : Event) : void
 		{
 			_timer.stop();
-			removeEventListener(Event.ENTER_FRAME, _onTimer);
+			removeListener(Event.ENTER_FRAME, _onTimer);
 		}
 		
 		private function _onTimer(ev : Event) : void

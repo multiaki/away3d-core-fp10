@@ -98,7 +98,7 @@ package away3d.materials
 		 */
         public function removeOnMaterialUpdate(listener:Function):void
         {
-        	removeEventListener(MaterialEvent.MATERIAL_UPDATED, listener, false);
+        	removeListener(MaterialEvent.MATERIAL_UPDATED, listener, false);
         }
 	}
 }

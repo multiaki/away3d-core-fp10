@@ -88,7 +88,7 @@ package nochump.util.zip {
 			inbuf.endian = Endian.LITTLE_ENDIAN;
 			if (inflateTimer) {
 				inflateTimer.stop();
-				inflateTimer.removeEventListener(TimerEvent.TIMER, inflateNextChunk);
+				inflateTimer.removeListener(TimerEvent.TIMER, inflateNextChunk);
 			}
 			inflateTimer = new Timer(TIMER_INTERVAL);
             inflateTimer.addEventListener(TimerEvent.TIMER, inflateNextChunk);

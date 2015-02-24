@@ -7,13 +7,14 @@ package away3d.lights
 	import away3d.events.*;
 	
 	import flash.display.*;
-	
+	import satprof.EventUtil;
+    
 	use namespace arcane;
 	
     /**
     * Lightsource that colors all shaded materials evenly from any angle
     */
-    public class AbstractLight
+    public class AbstractLight extends EventUtil
     {
 		/** @private */
         arcane var _red:Number;

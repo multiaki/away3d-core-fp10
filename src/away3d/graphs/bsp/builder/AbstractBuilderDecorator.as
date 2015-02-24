@@ -175,8 +175,8 @@ package away3d.graphs.bsp.builder
 
 		private function onBuildComplete(event : BSPBuildEvent) : void
 		{
-			_wrapped.removeEventListener(BSPBuildEvent.BUILD_PROGRESS, onBuildProgress);
-			_wrapped.removeEventListener(BSPBuildEvent.BUILD_COMPLETE, onBuildComplete);
+			removeListener(_wrapped, BSPBuildEvent.BUILD_PROGRESS, onBuildProgress);
+			removeListener(_wrapped, BSPBuildEvent.BUILD_COMPLETE, onBuildComplete);
 			_progressEvent.count = wrapped.numSteps + 1;
 			setTimeout(buildPart, 40);
 		}

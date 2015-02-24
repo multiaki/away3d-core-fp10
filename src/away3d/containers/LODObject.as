@@ -42,7 +42,7 @@ package away3d.containers
             minp = ini.getNumber("minp", 0);
             
             for each (var child:Object3D in childarray)
-                addChild(child);
+                add3dChild(child);
         }
         
 		/**

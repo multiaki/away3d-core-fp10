@@ -201,7 +201,7 @@
             super(init);
             
             for each (var child:Object3D in childarray)
-                addChild(child);
+                add3dChild(child);
         }
         
 		/**
@@ -209,22 +209,22 @@
 		 * 
 		 * @param	...childarray		An array of 3d objects to be added
 		 */
-        public function addChildren(...childarray):void
+        public function add3dChildren(...childarray):void
         {
             for each (var child:Object3D in childarray)
-                addChild(child);
+                add3dChild(child);
         }
         
 		/**
 		 * Adds a 3d object to the scene as a child of the container
 		 * 
 		 * @param	child	The 3d object to be added
-		 * @throws	Error	ObjectContainer3D.addChild(null)
+		 * @throws	Error	add3dChild(null, ObjectContainer3D)
 		 */
-        public function addChild(child:Object3D):void
+        public function add3dChild(child:Object3D):void
         {
             if (child == null)
-                throw new Error("ObjectContainer3D.addChild(null)");
+                throw new Error("add3dChild(null, ObjectContainer3D)");
             
             updatePolyCount(child);
             
@@ -463,7 +463,7 @@
 			var child:Object3D;
             for each (child in children)
             	if (!(child is Bone))
-                	container.addChild(child.clone());
+                	add3dChild(child, container.clone());
                 
             return container;
         }
@@ -483,16 +483,16 @@
             for each (var child:Object3D in children) {
             	if (child is Bone) {
             		_child = new Bone();
-                	container.addChild(_child);
+                	add3dChild(_child, container);
                 	(child as Bone).cloneAll(_child);
             	} else if (child is ObjectContainer3D) {
             		_child = new ObjectContainer3D();
-                	container.addChild(_child);
+                	add3dChild(_child, container);
                 	(child as ObjectContainer3D).cloneAll(_child);
             	} else if (child is Mesh) {
-                	container.addChild((child as Mesh).cloneAll());
+                	add3dChild((child, container as Mesh).cloneAll());
             	} else {
-                	container.addChild(child.clone());
+                	add3dChild(child, container.clone());
              	}
             }
             

@@ -48,7 +48,7 @@ package away3d.graphs.bsp.builder
 			_canceled = true;
 			if (_iterator) {
 				_iterator.cancelAsyncTraversal();
-				_iterator.removeEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onIterationComplete);
+				removeListener(_iterator, IteratorEvent.ASYNC_ITERATION_COMPLETE, onIterationComplete);
 			}
 		}
 

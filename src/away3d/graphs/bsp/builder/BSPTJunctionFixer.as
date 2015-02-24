@@ -57,8 +57,8 @@ package away3d.graphs.bsp.builder
 
 		private function onIterationComplete(event : IteratorEvent) : void
 		{
-			_iterator.removeEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onIterationComplete);
-			_iterator.removeEventListener(IteratorEvent.ASYNC_ITERATION_TICK, onIterationTick);
+			removeListener(_iterator, IteratorEvent.ASYNC_ITERATION_COMPLETE, onIterationComplete);
+			removeListener(_iterator, IteratorEvent.ASYNC_ITERATION_TICK, onIterationTick);
 			notifyComplete();
 		}
 

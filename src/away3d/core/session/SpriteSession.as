@@ -52,7 +52,7 @@ package away3d.core.session
         public override function addDisplayObject(child:DisplayObject):void
         {
             //add to container
-            _container.addChild(child);
+            add3dChild(child, _container);
             child.visible = true;
             
             layer = null;
@@ -74,9 +74,9 @@ package away3d.core.session
             }
             
             if (parent)
-            	parent.addChild(_sprite);
+            	add3dChild(_sprite, parent);
             else {
-            	_container.addChild(_sprite);
+            	add3dChild(_sprite, _container);
             	layer = _sprite;
             }
             
@@ -104,7 +104,7 @@ package away3d.core.session
             graphics = _shape.graphics;
             
             //add new canvas to base canvas
-            _container.addChild(_shape);
+            add3dChild(_shape, _container);
        		
 			_layerDirty = false;
 			

@@ -54,12 +54,12 @@ package away3d.core.stats
         	times = new Dictionary(true);
         	
         	graphBitmap = new Bitmap();
-        	addChild(graphBitmap);
+        	add3dChild(graphBitmap);
         	
         	var logo:Logo = new Logo();
         	logo.x = 1;
         	logo.y = 1;
-        	addChild(logo);
+        	add3dChild(logo);
         	
         	_width = width+2;
         	
@@ -84,7 +84,7 @@ package away3d.core.stats
         	Tasks.desc = desc;
         	
         	var tasks:Tasks = getInstance();
-        	container.addChild(tasks);
+        	add3dChild(tasks, container);
         	return tasks;
         }
         
@@ -102,7 +102,7 @@ package away3d.core.stats
         	span = (span>0)?span:Math.max(_text.width+20,60);
         	_width += span;
         	
-        	addChild(_text);
+        	add3dChild(_text);
         	tasks[id] = _text;
         	
         	_text.defaultText = text;

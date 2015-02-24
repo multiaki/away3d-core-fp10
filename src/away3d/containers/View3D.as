@@ -563,11 +563,11 @@
         		removeChildAt(0);
         	
         	//add children
-        	addChild(background);
-            addChild(_session.getContainer(this));
-            addChild(_interactiveLayer);
-            addChild(overlay);
-            addChild(foreground);
+        	add3dChild(background);
+            add3dChild(_session.getContainer(this));
+            add3dChild(_interactiveLayer);
+            add3dChild(overlay);
+            add3dChild(foreground);
         }
         
         public function get screenClipping():Clipping
@@ -738,7 +738,7 @@
         	
         	_overlays[value] = value;
         	
-        	overlay.addChild(value as Sprite);
+        	add3dChild(value as Sprite, overlay);
         }
         
         /** 
@@ -953,7 +953,7 @@
 		 */
         public function removeOnMouseMove(listener:Function):void
         {
-            removeEventListener(MouseEvent3D.MOUSE_MOVE, listener, false);
+            removeListener(MouseEvent3D.MOUSE_MOVE, listener, false);
         }
 		
 		/**
@@ -973,7 +973,7 @@
 		 */
         public function removeOnMouseDown(listener:Function):void
         {
-            removeEventListener(MouseEvent3D.MOUSE_DOWN, listener, false);
+            removeListener(MouseEvent3D.MOUSE_DOWN, listener, false);
         }
 		
 		/**
@@ -993,7 +993,7 @@
 		 */
         public function removeOnMouseUp(listener:Function):void
         {
-            removeEventListener(MouseEvent3D.MOUSE_UP, listener, false);
+            removeListener(MouseEvent3D.MOUSE_UP, listener, false);
         }
 		
 		/**
@@ -1013,7 +1013,7 @@
 		 */
         public function removeOnMouseOver(listener:Function):void
         {
-            removeEventListener(MouseEvent3D.MOUSE_OVER, listener, false);
+            removeListener(MouseEvent3D.MOUSE_OVER, listener, false);
         }
 		
 		/**
@@ -1033,7 +1033,7 @@
 		 */
         public function removeOnMouseOut(listener:Function):void
         {
-            removeEventListener(MouseEvent3D.MOUSE_OUT, listener, false);
+            removeListener(MouseEvent3D.MOUSE_OUT, listener, false);
         }
         
 		/**
@@ -1053,7 +1053,7 @@
 		 */
         public function removeOnViewUpdate(listener:Function):void
         {
-            removeEventListener(ViewEvent.VIEW_UPDATED, listener, false);
+            removeListener(ViewEvent.VIEW_UPDATED, listener, false);
         }
 	}
 }

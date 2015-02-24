@@ -84,7 +84,7 @@
 						uvc = new UV(uv2.u, uv2.v);
 						
 						mesh.addFace(new Face(va, vb, vc, obj.material as Material, uva, uvb, uvc));
-						_container.addChild(mesh);
+						add3dChild(mesh, _container);
 						
 						if(_recenter)
 							mesh.applyPosition( (mesh.minX+mesh.maxX)*.5,  (mesh.minY+mesh.maxY)*.5, (mesh.minZ+mesh.maxZ)*.5);

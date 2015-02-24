@@ -414,7 +414,7 @@ package away3d.cameras
 		 */
         public function removeOnCameraUpdate(listener:Function):void
         {
-            removeEventListener(CameraEvent.CAMERA_UPDATED, listener, false);
+            removeListener(CameraEvent.CAMERA_UPDATED, listener, false);
         }
     }
 }

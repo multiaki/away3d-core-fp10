@@ -194,7 +194,7 @@ package away3d.primitives.data
 		 */
         public function removeOnMaterialChange(listener:Function):void
         {
-            removeEventListener(MaterialEvent.MATERIAL_CHANGED, listener, false);
+            removeListener(MaterialEvent.MATERIAL_CHANGED, listener, false);
         }
 	}
 }

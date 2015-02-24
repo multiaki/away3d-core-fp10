@@ -79,7 +79,7 @@ package away3d.loaders
             tf.color = 0x00FFFF;
             tf.bold = true;
             info.wordWrap = true;
-            side.addChild(info);
+            add3dChild(info, side);
             
             geometryTitle = ini.getString("geometryTitle", "Loading Geometry...");
             materialTitle = ini.getString("materialTitle", "Loading Material File...");
@@ -87,7 +87,7 @@ package away3d.loaders
             parsingTitle = ini.getString("parsingTitle", "Parsing Geometry...");
             _loaderSize = ini.getNumber("loaderSize", 200);
 
-            addChild(cube = new Cube({material:new MovieMaterial(side, {transparent:true, smooth:true}), width:_loaderSize, height:_loaderSize, depth:_loaderSize}));
+            add3dChild(cube = new Cube({material:new MovieMaterial(side, {transparent:true, smooth:true}), width:_loaderSize, height:_loaderSize, depth:_loaderSize}));
         }
 		
 		/**

@@ -206,9 +206,9 @@ package away3d.graphs.bsp.builder
 			if (event) {
 				_assignedFaces += _buildNode._assignedFaces;
 				_totalFaces += _buildNode._newFaces;
-				_buildNode.removeEventListener(Event.COMPLETE, buildStep);
-				_buildNode.removeEventListener(BSPBuildEvent.BUILD_WARNING, propagateBuildEvent);
-				_buildNode.removeEventListener(BSPBuildEvent.BUILD_ERROR, propagateBuildEvent);
+				removeListener(_buildNode, Event.COMPLETE, buildStep);
+				removeListener(_buildNode, BSPBuildEvent.BUILD_WARNING, propagateBuildEvent);
+				removeListener(_buildNode, BSPBuildEvent.BUILD_ERROR, propagateBuildEvent);
 				_buildNode = BSPNode(_iterator.next());
 			}
 

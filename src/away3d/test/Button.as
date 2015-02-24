@@ -28,7 +28,7 @@ class ButtonState extends SpriteUtil
 {
     public function ButtonState(pwidth:int, pheight:int, text:String = null, color:int = 0)
     {
-        addChild(new Panel(0, 0, pwidth, pheight));
+        add3dChild(new Panel(0, 0, pwidth, pheight));
         if (text)
         {
             var label:TextField = new TextField();
@@ -37,7 +37,7 @@ class ButtonState extends SpriteUtil
             label.y = 0;
             label.defaultTextFormat = new TextFormat("Arial", 14, color);
             label.text = text;
-            addChild(label);
+            add3dChild(label);
         }
     }
 }

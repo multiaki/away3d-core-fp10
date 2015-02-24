@@ -335,9 +335,9 @@ package away3d.primitives
 			_reflectionViewHolder = new Sprite();
 			_reflectionViewHolder.x = _view.x;
 			_reflectionViewHolder.y = _view.y;
-			_reflectionViewHolder.addChildAt(_reflectionView, 0);
+			add3dChildAt(_reflectionView, 0, _reflectionViewHolder);
 			_reflectionViewHolder.visible = false;
-			_view.parent.addChild(_reflectionViewHolder); //TODO: Do not add at cero, add underneath.
+			add3dChild(_reflectionViewHolder, _view.parent); //TODO: Do not add at cero, add underneath.
 			
 			//TODO: Remove on final version.
 			_reflectionViewHolder.alpha = 0.25;
@@ -652,7 +652,7 @@ package away3d.primitives
 			//_bumpMapDummyPlane.pushback = true;
 			_bumpMapDummyPlane.alpha = 0;
 			
-			scene.addChild(_bumpMapDummyPlane);
+			add3dChild(_bumpMapDummyPlane, scene);
 			_bumpMapContainer = _bumpMapDummyPlane.ownSession.getContainer(_view) as Sprite;
 		}
 		private function updatePlaneDummyDimensions():void

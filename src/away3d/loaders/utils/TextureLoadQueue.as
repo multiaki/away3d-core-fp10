@@ -83,11 +83,11 @@ package away3d.loaders.utils
 		private function cleanUpOldItem(item:TextureLoader):void
 		{
 			item;//TODO : FDT Warning
-			currentLoader.removeEventListener(Event.COMPLETE, onItemComplete, false);
-			currentLoader.removeEventListener(HTTPStatusEvent.HTTP_STATUS, redispatchEvent, false);
-			currentLoader.removeEventListener(IOErrorEvent.IO_ERROR, redispatchEvent, false);
-			currentLoader.removeEventListener(ProgressEvent.PROGRESS, redispatchEvent, false);
-			currentLoader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, redispatchEvent, false);	
+			removeListener(currentLoader, Event.COMPLETE, onItemComplete, false);
+			removeListener(currentLoader, HTTPStatusEvent.HTTP_STATUS, redispatchEvent, false);
+			removeListener(currentLoader, IOErrorEvent.IO_ERROR, redispatchEvent, false);
+			removeListener(currentLoader, ProgressEvent.PROGRESS, redispatchEvent, false);
+			removeListener(currentLoader, SecurityErrorEvent.SECURITY_ERROR, redispatchEvent, false);	
 		}
 		
 		/**

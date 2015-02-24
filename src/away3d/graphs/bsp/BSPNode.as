@@ -219,7 +219,7 @@ package away3d.graphs.bsp
 		 * 
 		 * @private
 		 */
-		public function addChild(child : Object3D) : void
+		public function add3dChild(child : Object3D) : void
 		{
 			if (!_children) _children = [];
 			_children.push(child);

@@ -1,14 +1,16 @@
-package satprof
+﻿package satprof
 {
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 	
 	public class Away3dEventUtils extends EventDispatcher
 	{
-		private var eventList:Array;
 		private var _dispatcher:*;
-		private var _showTraces = false;
+		private var _showTraces = true;
 		
+		private var childrenArr:Array;
+
+
 		public var eventLog:Array; // Array of objects
 		
 		private static var instance: Away3dEventUtils;
@@ -22,6 +24,70 @@ package satprof
 			instance = this;
 			eventLog = [];
 		}
+		public function add3dChild(child:Object, container = ""):void {
+			var i = childrenArr.length;
+			childrenArr[i] = new Object();
+			childrenArr[i].child = ownerObject;
+			childrenArr[i].container = eventObject;
+
+			if (_showTraces && childrenArr.length%1000 == 0){
+				var childStr:String = "";
+				var containerStr:String = "";
+				
+				try {
+					childStr = String(childrenArr.child);
+				} catch (error:Error) {
+					childStr = "Null";
+				}
+
+				try {
+					containerStr = String(childrenArr.container);
+				} catch (error:Error) {
+					containerStr = "Null";
+				}
+				if (containerStr == ""){
+					trace("FYI, in Away3dEventUtils.add3dChild, Added "+i+": "+childStr);
+				} else {
+					trace("FYI: In Away3dEventUtils.add3dChild, Added "+i+": "+childStr+" to " + containerStr);
+				}
+			}
+
+			if(container) container.addChild(child);
+			else addChild(child);
+		}
+		public function add3dChildAt(child:Object, index:int = 0, container = false):void {
+			var i = childrenArr.length;
+			childrenArr[i] = new Object();
+			childrenArr[i].child = ownerObject;
+			childrenArr[i].container = eventObject;
+
+
+			if (_showTraces && childrenArr.length%1000 == 0){
+				var childStr:String = "";
+				var containerStr:String = "";
+				
+				try {
+					childStr = String(childrenArr.child);
+				} catch (error:Error) {
+					childStr = "Null";
+				}
+
+				try {
+					containerStr = String(childrenArr.container);
+				} catch (error:Error) {
+					containerStr = "Null";
+				}
+				if (containerStr == ""){
+					trace("FYI, in Away3dEventUtils.add3dChild, Added "+i+": "+childStr);
+				} else {
+					trace("FYI: In Away3dEventUtils.add3dChild, Added "+i+": "+childStr+" to " + containerStr);
+				}
+			}
+			
+			if(container) container.addChildAt(child);
+			else addChildAt(child);
+		}
+		
 		
 		public function addListener(ownerObject, eventObject, handlerFunction, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = true){
 			ownerObject.addEventListener(eventObject, handlerFunction, useCapture, priority, useWeakReference);
@@ -30,7 +96,7 @@ package satprof
 			eventLog[i].eventOwner = ownerObject;
 			eventLog[i].eventObject = eventObject;
 			eventLog[i].eventHandler = handlerFunction;
-			if (_showTraces){
+			if (_showTraces && eventLog.length%1000 == 0){
 				var str:String = "";
 				try {
 					str = ownerObject.name
@@ -48,7 +114,7 @@ package satprof
 		public function removeListener(ownerObject, eventObject, handlerFunction){
 			for (var i = 0; i<eventLog.length; i++){
 				if ( ownerObject == eventLog[i].eventOwner && eventObject == eventLog[i].eventObject && handlerFunction == eventLog[i].eventHandler){
-					eventLog[i].eventOwner.removeEventListener(eventLog[i].eventObject, eventLog[i].eventHandler);
+					eventLog[i].eventOwner.removeListener(eventLog[i].eventObject, eventLog[i].eventHandler);
 					eventLog.splice(i, 1); // Delete this item from array.
 					if (_showTraces){
 						trace("FYI, in EventUtils.removeListener, removed event "+i);
@@ -59,25 +125,25 @@ package satprof
 		
 		public function resumeListeners(){
 			for (var i=0; i<eventLog.length; i++){
-				///eventOwnerLog[i].removeEventListener(eventObjectLog[i], eventHandlerLog[i]);
+				///eventOwnerLog[i].removeListener(eventObjectLog[i], eventHandlerLog[i]);
 				addListener(eventLog[i].eventOwner, eventLog[i].eventObject, eventLog[i].eventHandler);
 			}
 			eventLog = [];
 		}
 		
 		public function kill(){
-			if (_showTraces){
-				trace("FYI, in Away3dEventUtils.kill, starting with " +eventLog.length+" logged event listeners...");
-			}
+			trace("FYI, in Away3dEventUtils.kill, starting with " +eventLog.length+" logged event listeners...");
+			
 			for (var i=0; i<eventLog.length; i++){
-				///eventOwnerLog[i].removeEventListener(eventObjectLog[i], eventHandlerLog[i]);
-				eventLog[i].eventOwner.removeEventListener(eventLog[i].eventObject, eventLog[i].eventHandler);
+				///eventOwnerLog[i].removeListener(eventObjectLog[i], eventHandlerLog[i]);
+				eventLog[i].eventOwner.removeListener(eventLog[i].eventObject, eventLog[i].eventHandler);
 			}
 			eventLog = [];
-			if (_showTraces){
-				trace("  ... now all events are cleared. Now we have " +eventLog.length+" logged event listeners.");
-			}
+			
+			trace("  ... now all events are cleared. Now we have " +eventLog.length+" logged event listeners.");
+			
 		}
+		
 		
 		public static function getInstance():Away3dEventUtils {
 			if(instance == null) {
