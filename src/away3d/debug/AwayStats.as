@@ -722,9 +722,9 @@ package away3d.debug
 
 			
 			_dragging = false; 
-			stage.removeEventListener(Event.MOUSE_LEAVE, _onMouseUpOrLeave);
-			stage.removeEventListener(MouseEvent.MOUSE_UP, _onMouseUpOrLeave);
-			stage.removeEventListener(MouseEvent.MOUSE_MOVE, _onMouseMove);
+			removeListener(stage, Event.MOUSE_LEAVE, _onMouseUpOrLeave);
+			removeListener(stage, MouseEvent.MOUSE_UP, _onMouseUpOrLeave);
+			removeListener(stage, MouseEvent.MOUSE_MOVE, _onMouseMove);
 		}
 		
 		
@@ -737,7 +737,7 @@ package away3d.debug
 		private function _onRemovedFromStage(ev : Event) : void
 		{
 			_timer.stop();
-			removeEventListener(Event.ENTER_FRAME, _onTimer);
+			removeListener(Event.ENTER_FRAME, _onTimer);
 		}
 		
 		private function _onTimer(ev : Event) : void

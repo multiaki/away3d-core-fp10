@@ -45,10 +45,10 @@ package satprof
 			}
 		}
 		
-		public function removeListener(ownerObject, eventObject, handlerFunction){
+		public function removeListener(ownerObject, eventObject, handlerFunction, useCapture:Boolean = false){
 			for (var i = 0; i<eventLog.length; i++){
 				if ( ownerObject == eventLog[i].eventOwner && eventObject == eventLog[i].eventObject && handlerFunction == eventLog[i].eventHandler){
-					eventLog[i].eventOwner.removeEventListener(eventLog[i].eventObject, eventLog[i].eventHandler);
+					eventLog[i].eventOwner.removeEventListener(eventLog[i].eventObject, eventLog[i].eventHandler, useCapture);
 					eventLog.splice(i, 1); // Delete this item from array.
 					if (_showTraces){
 						trace("FYI, in EventUtils.removeListener, removed event "+i);

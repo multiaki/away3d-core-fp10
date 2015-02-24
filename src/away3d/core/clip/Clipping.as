@@ -491,7 +491,7 @@ package away3d.core.clip
 		 */
         public function removeOnClippingUpdate(listener:Function):void
         {
-            removeEventListener(ClippingEvent.CLIPPING_UPDATED, listener, false);
+            removeListener(ClippingEvent.CLIPPING_UPDATED, listener, false);
         }
         
 		/**
@@ -511,7 +511,7 @@ package away3d.core.clip
 		 */
         public function removeOnScreenUpdate(listener:Function):void
         {
-            removeEventListener(ClippingEvent.SCREEN_UPDATED, listener, false);
+            removeListener(ClippingEvent.SCREEN_UPDATED, listener, false);
         }
     }
 }

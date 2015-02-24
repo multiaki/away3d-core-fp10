@@ -77,7 +77,7 @@ package away3d.loaders
 		/** @private */
     	arcane function notifySuccess():void
 		{
-			_broadcaster.removeEventListener(Event.ENTER_FRAME, update);
+			removeListener(_broadcaster, Event.ENTER_FRAME, update);
 			
 			if (!_parsesuccess)
         		_parsesuccess = new ParserEvent(ParserEvent.PARSE_SUCCESS, this, container);
@@ -87,7 +87,7 @@ package away3d.loaders
 		/** @private */
     	arcane function notifyError():void
 		{
-			_broadcaster.removeEventListener(Event.ENTER_FRAME, update);
+			removeListener(_broadcaster, Event.ENTER_FRAME, update);
 			
 			if (!_parseerror)
         		_parseerror = new ParserEvent(ParserEvent.PARSE_ERROR, this, container);
@@ -471,7 +471,7 @@ package away3d.loaders
 		 */
         public function removeOnSuccess(listener:Function):void
         {
-            removeEventListener(ParserEvent.PARSE_SUCCESS, listener, false);
+            removeListener(ParserEvent.PARSE_SUCCESS, listener, false);
         }
 		
 		/**
@@ -491,7 +491,7 @@ package away3d.loaders
 		 */
         public function removeOnError(listener:Function):void
         {
-            removeEventListener(ParserEvent.PARSE_ERROR, listener, false);
+            removeListener(ParserEvent.PARSE_ERROR, listener, false);
         }
         
 		/**
@@ -511,7 +511,7 @@ package away3d.loaders
 		 */
         public function removeOnProgress(listener:Function):void
         {
-            removeEventListener(ParserEvent.PARSE_PROGRESS, listener, false);
+            removeListener(ParserEvent.PARSE_PROGRESS, listener, false);
         }
 	}
 }

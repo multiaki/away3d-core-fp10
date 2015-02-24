@@ -83,8 +83,8 @@ package away3d.graphs.bsp.builder
 
 		private function onBuildPortalsComplete(event : IteratorEvent) : void
 		{
-			_treeIterator.removeEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onBuildPortalsComplete);
-			_treeIterator.removeEventListener(IteratorEvent.ASYNC_ITERATION_TICK, onBuildPortalsTick);
+			removeListener(_treeIterator, IteratorEvent.ASYNC_ITERATION_COMPLETE, onBuildPortalsComplete);
+			removeListener(_treeIterator, IteratorEvent.ASYNC_ITERATION_TICK, onBuildPortalsTick);
 
 			setTimeout(removeOneSided, 40);
 		}
@@ -122,8 +122,8 @@ package away3d.graphs.bsp.builder
 
 		private function onRemoveOneSidedComplete(event : IteratorEvent) : void
 		{
-			_portalIterator.removeEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onRemoveOneSidedComplete);
-			_portalIterator.removeEventListener(IteratorEvent.ASYNC_ITERATION_TICK, onRemoveOneSidedTick);
+			removeListener(_portalIterator, IteratorEvent.ASYNC_ITERATION_COMPLETE, onRemoveOneSidedComplete);
+			removeListener(_portalIterator, IteratorEvent.ASYNC_ITERATION_TICK, onRemoveOneSidedTick);
 			_portals = _portalsSwitch;
 			_portalsSwitch = null;
 			if (_portals.length > wrapped.numNodes) {
