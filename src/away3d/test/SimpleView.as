@@ -1,15 +1,17 @@
 ﻿package away3d.test
 {
+	import flash.display.Sprite;
+	import flash.events.Event;
+	
 	import away3d.cameras.Camera3D;
 	import away3d.containers.View3D;
 	import away3d.core.base.Object3D;
 	import away3d.core.render.Renderer;
 	import away3d.core.stats.Tasks;
 	
-	import flash.display.Sprite;
-	import flash.events.Event;
+	import satprof.SpriteUtil;
 	
-	public class SimpleView extends Sprite
+	public class SimpleView extends SpriteUtil
 	{
 		protected var task		:String;
 		protected var view		:View3D;
@@ -36,7 +38,7 @@
             view.scene.addChild(target);
             view.camera.lookAt(target.position);
 			
-			view.addEventListener(Event.ADDED_TO_STAGE, init);
+			addListener(view, Event.ADDED_TO_STAGE, init);
 			addChild(view);
 			
 			 //stat+profiler
@@ -63,7 +65,7 @@
         protected function start() : void
 		{
 			view.camera.lookAt(target.position);
-			addEventListener(Event.ENTER_FRAME, run);
+			addListener(this, Event.ENTER_FRAME, run);
 		}
 		
         protected function run(event:Event) : void

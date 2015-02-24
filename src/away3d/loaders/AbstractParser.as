@@ -42,7 +42,7 @@ package away3d.loaders
     /**
     * Abstract parsing object used as a base class for all loaders to extend from.
     */
-	public class AbstractParser extends EventDispatcher
+	public class AbstractParser extends EventUtil
 	{
 		/** @private */
     	arcane var _container:Object3D;
@@ -443,7 +443,7 @@ package away3d.loaders
          */
         public function parseGeometry(data:*):Object3D
         {
-        	_broadcaster.addEventListener(Event.ENTER_FRAME, update);
+        	addListener(_broadcaster, Event.ENTER_FRAME, update);
         	
         	prepareData(data);
         	
@@ -461,7 +461,7 @@ package away3d.loaders
 		 */
         public function addOnSuccess(listener:Function):void
         {
-            addEventListener(ParserEvent.PARSE_SUCCESS, listener, false, 0, true);
+            addListener(this, ParserEvent.PARSE_SUCCESS, listener, false, 0, true);
         }
 		
 		/**
@@ -481,7 +481,7 @@ package away3d.loaders
 		 */
         public function addOnError(listener:Function):void
         {
-            addEventListener(ParserEvent.PARSE_ERROR, listener, false, 0, true);
+            addListener(this, ParserEvent.PARSE_ERROR, listener, false, 0, true);
         }
 		
 		/**
@@ -501,7 +501,7 @@ package away3d.loaders
 		 */
         public function addOnProgress(listener:Function):void
         {
-            addEventListener(ParserEvent.PARSE_PROGRESS, listener, false, 0, true);
+            addListener(this, ParserEvent.PARSE_PROGRESS, listener, false, 0, true);
         }
 		
 		/**

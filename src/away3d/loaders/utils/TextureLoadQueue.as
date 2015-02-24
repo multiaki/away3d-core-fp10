@@ -8,6 +8,8 @@ package away3d.loaders.utils
 	import flash.events.SecurityErrorEvent;
 	import flash.net.URLRequest;
 	
+	import satprof.EventUtil;
+	
 	
 	
 	[Event(name="complete", type="flash.events.Event")]
@@ -19,7 +21,7 @@ package away3d.loaders.utils
 	/**
 	 * Creates a queue of textures that load sequentially
 	 */	
-	public class TextureLoadQueue extends EventDispatcher
+	public class TextureLoadQueue extends EventUtil
 	{
 		private var _queue:Array;
 		private var _currentItemIndex:int;
@@ -51,12 +53,12 @@ package away3d.loaders.utils
 				
 					// make it lowest priority so we handle it after the loader handles the event itself. That means that when we
 					// re-dispatch the event, the loaders have already processed their data and are ready for use
-					currentLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, onItemComplete, false, int.MIN_VALUE, true);
+					addListener(currentLoader.contentLoaderInfo, Event.COMPLETE, onItemComplete, false, int.MIN_VALUE, true);
 					
-					currentLoader.contentLoaderInfo.addEventListener(HTTPStatusEvent.HTTP_STATUS, redispatchEvent, false, 0, true);
-					currentLoader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, redispatchEvent, false, 0, true);
-					currentLoader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS, redispatchEvent, false, 0, true);
-					currentLoader.contentLoaderInfo.addEventListener(SecurityErrorEvent.SECURITY_ERROR, redispatchEvent, false, 0, true);
+					addListener(currentLoader.contentLoaderInfo, HTTPStatusEvent.HTTP_STATUS, redispatchEvent, false, 0, true);
+					addListener(currentLoader.contentLoaderInfo, IOErrorEvent.IO_ERROR, redispatchEvent, false, 0, true);
+					addListener(currentLoader.contentLoaderInfo, ProgressEvent.PROGRESS, redispatchEvent, false, 0, true);
+					addListener(currentLoader.contentLoaderInfo, SecurityErrorEvent.SECURITY_ERROR, redispatchEvent, false, 0, true);
 					currentLoader.load(currentURLRequest);
 				}
 			}

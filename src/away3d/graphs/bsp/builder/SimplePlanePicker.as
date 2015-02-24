@@ -11,7 +11,7 @@ package away3d.graphs.bsp.builder
 
 	use namespace arcane;
 
-	public class SimplePlanePicker extends EventDispatcher implements IBSPPlanePicker
+	public class SimplePlanePicker extends EventUtil implements IBSPPlanePicker
 	{
 		private var _splitWeight : Number = 10;
 		private var _balanceWeight : Number = 1;
@@ -39,7 +39,7 @@ package away3d.graphs.bsp.builder
 			_bestPlane = null;
 			_canceled = false;
 			_iterator = new VectorIterator(Vector.<Object>(faces));
-			_iterator.addEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onIterationComplete, false, 0, true);
+			addListener(_iterator, IteratorEvent.ASYNC_ITERATION_COMPLETE, onIterationComplete, false, 0, true);
 			_iterator.performMethodAsync(pickPlaneStep);
 		}
 

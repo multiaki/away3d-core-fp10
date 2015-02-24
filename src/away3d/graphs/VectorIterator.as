@@ -9,7 +9,7 @@ package away3d.graphs
 
 	use namespace arcane;
 
-	public class VectorIterator extends EventDispatcher implements IIterator
+	public class VectorIterator extends EventUtil implements IIterator
 	{
 		private var _traverseIndex : int;
 		private var _vector : Vector.<Object>;

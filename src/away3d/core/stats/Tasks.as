@@ -1,10 +1,15 @@
 package away3d.core.stats 
 {
-	import flash.display.*;
-	import flash.events.*;
-	import flash.geom.*;
-	import flash.system.*;
-	import flash.utils.*;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.geom.Rectangle;
+	import flash.system.System;
+	import flash.utils.Dictionary;
+	import flash.utils.getTimer;
+	
+	import satprof.SpriteUtil;
 	
     /**
      * 
@@ -14,7 +19,7 @@ package away3d.core.stats
      * @author katopz@sleepydesign.com
      * 
      */	
-    public class Tasks extends Sprite
+    public class Tasks extends SpriteUtil
     {
 		public static var desc	:String = "";
 		
@@ -67,7 +72,7 @@ package away3d.core.stats
 			// graph
 			graphBitmapData = graphBitmap.bitmapData = new BitmapData(100, _height, false, 0x000000);
 			
-			addEventListener(Event.ENTER_FRAME, update, false, 0, true);
+			addListener(this, Event.ENTER_FRAME, update, false, 0, true);
 			
 			draw();
         }

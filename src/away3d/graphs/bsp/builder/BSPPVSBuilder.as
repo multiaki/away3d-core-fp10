@@ -39,8 +39,8 @@ package away3d.graphs.bsp.builder
 
 			setProgressMessage("Linking portals to leaves");
 			_vectorIterator = new VectorIterator(Vector.<Object>(portals));
-			_vectorIterator.addEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onPartitionPortalsComplete);
-			_vectorIterator.addEventListener(IteratorEvent.ASYNC_ITERATION_TICK, onSourcePortalIterationTick);
+			addListener(_vectorIterator, IteratorEvent.ASYNC_ITERATION_COMPLETE, onPartitionPortalsComplete);
+			addListener(_vectorIterator, IteratorEvent.ASYNC_ITERATION_TICK, onSourcePortalIterationTick);
 			_vectorIterator.performMethodAsync(partitionPortal, maxTimeOut);
 		}
 
@@ -82,8 +82,8 @@ package away3d.graphs.bsp.builder
 
 			// create new iterator to target one sided portals
 			_vectorIterator = new VectorIterator(Vector.<Object>(_oneSidedPortals));
-			_vectorIterator.addEventListener(IteratorEvent.ASYNC_ITERATION_TICK, onOneSidedPortalIterationTick);
-			_vectorIterator.addEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onBuildInitialFrontListComplete);
+			addListener(_vectorIterator, IteratorEvent.ASYNC_ITERATION_TICK, onOneSidedPortalIterationTick);
+			addListener(_vectorIterator, IteratorEvent.ASYNC_ITERATION_COMPLETE, onBuildInitialFrontListComplete);
 			_vectorIterator.performMethodAsync(buildInitialFrontList, maxTimeOut);
 		}
 
@@ -104,7 +104,7 @@ package away3d.graphs.bsp.builder
 			updateNextStep();
 			setProgressMessage("Finding neighbouring portals");
 			_vectorIterator.removeEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onBuildInitialFrontListComplete);
-			_vectorIterator.addEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onFindNeighboursComplete);
+			addListener(_vectorIterator, IteratorEvent.ASYNC_ITERATION_COMPLETE, onFindNeighboursComplete);
 			_vectorIterator.performMethodAsync(findNeighbours, maxTimeOut);
 		}
 
@@ -125,7 +125,7 @@ package away3d.graphs.bsp.builder
 			updateNextStep();
 			setProgressMessage("Calculating potential visibility from neighbours");
 			_vectorIterator.removeEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onFindNeighboursComplete);
-			_vectorIterator.addEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onCullAgainstNeighboursComplete);
+			addListener(_vectorIterator, IteratorEvent.ASYNC_ITERATION_COMPLETE, onCullAgainstNeighboursComplete);
 			_vectorIterator.performMethodAsync(cullAgainstNeighbours, maxTimeOut);
 		}
 
@@ -148,7 +148,7 @@ package away3d.graphs.bsp.builder
 			updateNextStep();
 			setProgressMessage("Propagating visibility information");
 			_vectorIterator.removeEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onCullAgainstNeighboursComplete);
-			_vectorIterator.addEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onPropagateVisibilityComplete);
+			addListener(_vectorIterator, IteratorEvent.ASYNC_ITERATION_COMPLETE, onPropagateVisibilityComplete);
 			_vectorIterator.performMethodAsync(propagateVisibility, maxTimeOut);
 		}
 
@@ -198,7 +198,7 @@ package away3d.graphs.bsp.builder
 			notifyProgress(_index, _oneSidedPortals.length);
 
 			if (_loopPortal) {
-				_loopPortal.addEventListener(Event.COMPLETE, deepTraceVisListStep);
+				addListener(_loopPortal, Event.COMPLETE, deepTraceVisListStep);
 				_loopPortal.findVisiblePortals(_oneSidedPortals);
 			}
 			else {
@@ -208,8 +208,8 @@ package away3d.graphs.bsp.builder
 				setProgressMessage("Assigning visibility list");
 
 				_vectorIterator = new VectorIterator(Vector.<Object>(leaves));
-				_vectorIterator.addEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onAssignVisListComplete);
-				_vectorIterator.addEventListener(IteratorEvent.ASYNC_ITERATION_TICK, onLeafIterationTick);
+				addListener(_vectorIterator, IteratorEvent.ASYNC_ITERATION_COMPLETE, onAssignVisListComplete);
+				addListener(_vectorIterator, IteratorEvent.ASYNC_ITERATION_TICK, onLeafIterationTick);
 				_vectorIterator.performMethodAsync(assignVisList, maxTimeOut);
 			}
 		}

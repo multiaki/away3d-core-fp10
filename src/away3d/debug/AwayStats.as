@@ -1,7 +1,5 @@
 package away3d.debug
 {
-	import away3d.containers.View3D;
-	
 	import flash.display.BitmapData;
 	import flash.display.CapsStyle;
 	import flash.display.Graphics;
@@ -16,6 +14,10 @@ package away3d.debug
 	import flash.text.TextFormat;
 	import flash.utils.Timer;
 	import flash.utils.getTimer;
+	
+	import away3d.containers.View3D;
+	
+	import satprof.SpriteUtil;
 	
 	
 	
@@ -54,7 +56,7 @@ package away3d.debug
 	 * impact on CPU usage, which is the reason why the default number is zero, denoting that
 	 * the average is calculated from a running sum since the widget was last reset.</p>
 	*/
-	public class AwayStats extends Sprite
+	public class AwayStats extends SpriteUtil
 	{
 		private var _views : Vector.<View3D>;
 		private var _timer : Timer;
@@ -206,8 +208,8 @@ package away3d.debug
 			_reset();
 			_redrawWindow();
 			
-			addEventListener(Event.ADDED_TO_STAGE, _onAddedToStage);
-			addEventListener(Event.REMOVED_FROM_STAGE, _onRemovedFromStage);
+			addListener(this, Event.ADDED_TO_STAGE, _onAddedToStage);
+			addListener(this, Event.REMOVED_FROM_STAGE, _onRemovedFromStage);
 		}
 		
 
@@ -264,7 +266,7 @@ package away3d.debug
 		private function _initMisc() : void
 		{
 			_timer = new Timer(200, 0);
-			_timer.addEventListener('timer', _onTimer);
+			addListener(_timer, 'timer', _onTimer);
 			
 			_label_format = new TextFormat('_sans', 9, 0xffffff, true);
 			_data_format = new TextFormat('_sans', 9, 0xffffff, false);
@@ -383,7 +385,7 @@ package away3d.debug
 			_min_max_btn.graphics.moveTo(-3, 2);
 			_min_max_btn.graphics.lineTo(3, 2);
 			_min_max_btn.buttonMode = true;
-			_min_max_btn.addEventListener(MouseEvent.CLICK, _onMinMaxBtnClick);
+			addListener(_min_max_btn, MouseEvent.CLICK, _onMinMaxBtnClick);
 			_top_bar.addChild(_min_max_btn);
 		}
 		
@@ -516,18 +518,18 @@ package away3d.debug
 		private function _initInteraction() : void
 		{
 			// Mouse down to drag on the title
-			_top_bar.addEventListener(MouseEvent.MOUSE_DOWN, _onTopBarMouseDown);
+			addListener(_top_bar, MouseEvent.MOUSE_DOWN, _onTopBarMouseDown);
 			
 			// Reset functionality
 			if (_enable_reset) {
 				_btm_bar.mouseEnabled = false;
-				_btm_bar_hit.addEventListener(MouseEvent.CLICK, _onCountersClick_reset);
-				_afps_tf.addEventListener(MouseEvent.MOUSE_UP, _onAverageFpsClick_reset, false, 1);
+				addListener(_btm_bar_hit, MouseEvent.CLICK, _onCountersClick_reset);
+				addListener(_afps_tf, MouseEvent.MOUSE_UP, _onAverageFpsClick_reset, false, 1);
 			}
 			
 			// Framerate increase/decrease by clicking on the diagram
 			if (_enable_mod_fr) {
-				_diagram.addEventListener(MouseEvent.CLICK, _onDiagramClick);
+				addListener(_diagram, MouseEvent.CLICK, _onDiagramClick);
 			}
 		}
 		
@@ -729,7 +731,7 @@ package away3d.debug
 		private function _onAddedToStage(ev : Event) : void
 		{
 			_timer.start();
-			addEventListener(Event.ENTER_FRAME, _onEnterFrame);
+			addListener(this, Event.ENTER_FRAME, _onEnterFrame);
 		}
 		
 		private function _onRemovedFromStage(ev : Event) : void
@@ -847,9 +849,9 @@ package away3d.debug
 			_drag_dx = this.mouseX;
 			_drag_dy = this.mouseY;
 			
-			stage.addEventListener(MouseEvent.MOUSE_MOVE, _onMouseMove);
-			stage.addEventListener(MouseEvent.MOUSE_UP, _onMouseUpOrLeave);
-			stage.addEventListener(Event.MOUSE_LEAVE, _onMouseUpOrLeave);
+			addListener(stage, MouseEvent.MOUSE_MOVE, _onMouseMove);
+			addListener(stage, MouseEvent.MOUSE_UP, _onMouseUpOrLeave);
+			addListener(stage, Event.MOUSE_LEAVE, _onMouseUpOrLeave);
 		}
 		
 		private function _onMouseMove(ev : MouseEvent) : void

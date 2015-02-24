@@ -1,16 +1,24 @@
 package away3d.core.clip
 {
-	import away3d.arcane;
-	import away3d.containers.*;
-	import away3d.core.base.*;
-	import away3d.core.render.*;
-	import away3d.core.utils.*;
-	import away3d.core.vos.*;
-	import away3d.events.*;
+	import flash.display.Sprite;
+	import flash.display.Stage;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
+	import flash.geom.Point;
 	
-	import flash.display.*;
-	import flash.events.*;
-	import flash.geom.*;
+	import away3d.arcane;
+	import away3d.containers.View3D;
+	import away3d.core.base.Mesh;
+	import away3d.core.base.Vertex;
+	import away3d.core.render.Renderer;
+	import away3d.core.utils.CameraVarsStore;
+	import away3d.core.utils.Init;
+	import away3d.core.vos.FaceVO;
+	import away3d.core.vos.SegmentVO;
+	import away3d.core.vos.SpriteVO;
+	import away3d.events.ClippingEvent;
+	
+	import satprof.EventUtil;
 	
 	/**
 	 * Dispatched when the clipping properties of a clipping object update.
@@ -45,7 +53,7 @@ package away3d.core.clip
     /**
     * Base clipping class for no clipping.
     */
-    public class Clipping extends EventDispatcher
+    public class Clipping extends EventUtil
     {
     	/** @private */
         arcane var _cameraVarsStore:CameraVarsStore;
@@ -473,7 +481,7 @@ package away3d.core.clip
 		 */
         public function addOnClippingUpdate(listener:Function):void
         {
-            addEventListener(ClippingEvent.CLIPPING_UPDATED, listener, false, 0, false);
+            addListener(this, ClippingEvent.CLIPPING_UPDATED, listener, false, 0, false);
         }
 		
 		/**
@@ -493,7 +501,7 @@ package away3d.core.clip
 		 */
         public function addOnScreenUpdate(listener:Function):void
         {
-            addEventListener(ClippingEvent.SCREEN_UPDATED, listener, false, 0, false);
+            addListener(this, ClippingEvent.SCREEN_UPDATED, listener, false, 0, false);
         }
 		
 		/**

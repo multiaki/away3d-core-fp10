@@ -6,7 +6,7 @@ package away3d.graphs.bsp.builder
 	import flash.events.*;
 	import flash.utils.*;
 
-	internal class AbstractBuilderDecorator extends EventDispatcher implements IBSPBuilder
+	internal class AbstractBuilderDecorator extends EventUtil implements IBSPBuilder
 	{
 		private var _canceled : Boolean;
 		private var _numSteps : int;
@@ -20,9 +20,9 @@ package away3d.graphs.bsp.builder
 			_numSteps = numSteps;
 			_progressEvent = new BSPBuildEvent(BSPBuildEvent.BUILD_PROGRESS);
 			_progressEvent.totalParts = this.numSteps;
-			_wrapped.addEventListener(BSPBuildEvent.BUILD_CANCELED, propagateEvent);
-			_wrapped.addEventListener(BSPBuildEvent.BUILD_WARNING, propagateEvent);
-			_wrapped.addEventListener(BSPBuildEvent.BUILD_ERROR, propagateEvent);
+			addListener(_wrapped, BSPBuildEvent.BUILD_CANCELED, propagateEvent);
+			addListener(_wrapped, BSPBuildEvent.BUILD_WARNING, propagateEvent);
+			addListener(_wrapped, BSPBuildEvent.BUILD_ERROR, propagateEvent);
 		}
 
 		private function propagateEvent(event : BSPBuildEvent) : void
@@ -98,8 +98,8 @@ package away3d.graphs.bsp.builder
 		public function build(source : Array) : void
 		{
 			_canceled = false;
-			_wrapped.addEventListener(BSPBuildEvent.BUILD_PROGRESS, onBuildProgress);
-			_wrapped.addEventListener(BSPBuildEvent.BUILD_COMPLETE, onBuildComplete);
+			addListener(_wrapped, BSPBuildEvent.BUILD_PROGRESS, onBuildProgress);
+			addListener(_wrapped, BSPBuildEvent.BUILD_COMPLETE, onBuildComplete);
 			_wrapped.build(source);
 		}
 

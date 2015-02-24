@@ -59,9 +59,9 @@ package away3d.audio
 			_refv = new Vector3D;
 			_inv_ref_mtx = new Matrix3D;
 			
-			this.addEventListener(Object3DEvent.SCENE_CHANGED, _onSceneChanged);
+			addListener(this, Object3DEvent.SCENE_CHANGED, _onSceneChanged);
 			
-			this.addEventListener(Object3DEvent.SCENETRANSFORM_CHANGED, _onSceneTransformChanged);
+			addListener(this, Object3DEvent.SCENETRANSFORM_CHANGED, _onSceneTransformChanged);
 		}
 		
 		

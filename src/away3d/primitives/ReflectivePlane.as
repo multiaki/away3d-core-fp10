@@ -343,7 +343,7 @@ package away3d.primitives
 			_reflectionViewHolder.alpha = 0.25;
 			
 			//TODO: Change this type of autorendering to an override of updateMaterials().
-			_view.addEventListener(ViewEvent.RENDER_COMPLETE, mainViewRenderCompleteHandler);
+			addListener(this, _view, ViewEvent.RENDER_COMPLETE, mainViewRenderCompleteHandler);
 			
 			//A lot of comments to what the dummy plane is for below.
 			if(_distortionStrength != 0)

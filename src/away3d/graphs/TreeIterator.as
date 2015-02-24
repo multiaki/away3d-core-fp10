@@ -9,7 +9,7 @@ package away3d.graphs
 
 	use namespace arcane;
 
-	public class TreeIterator extends EventDispatcher implements IIterator
+	public class TreeIterator extends EventUtil implements IIterator
 	{
 		private var _traverseNode : ITreeNode;
 		private var _traverseState : int;

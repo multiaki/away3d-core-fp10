@@ -1,14 +1,14 @@
 package away3d.materials 
 {
 	import away3d.arcane;
-	import away3d.containers.*;
-	import away3d.core.base.*;
-	import away3d.core.render.*;
-	import away3d.core.utils.*;
-	import away3d.loaders.data.*;
-	import away3d.events.*;
-
-	import flash.events.*;
+	import away3d.containers.View3D;
+	import away3d.core.base.Object3D;
+	import away3d.core.render.Renderer;
+	import away3d.core.utils.ViewSourceObject;
+	import away3d.events.MaterialEvent;
+	import away3d.loaders.data.MaterialData;
+	
+	import satprof.EventUtil;
 	
 	use namespace arcane;
 	    
@@ -22,7 +22,7 @@ package away3d.materials
 	/**
 	 * Base class for all materials
 	 */
-	public class Material extends EventDispatcher
+	public class Material extends EventUtil
 	{
 		arcane var _materialData:MaterialData;
 		
@@ -88,7 +88,7 @@ package away3d.materials
 		 */
         public function addOnMaterialUpdate(listener:Function):void
         {
-        	addEventListener(MaterialEvent.MATERIAL_UPDATED, listener, false, 0, true);
+        	addListener(this, MaterialEvent.MATERIAL_UPDATED, listener, false, 0, true);
         }
         
 		/**

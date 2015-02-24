@@ -1,16 +1,20 @@
 package away3d.graphs.bsp
 {
+	import flash.events.Event;
+	import flash.geom.Vector3D;
+	import flash.utils.getTimer;
+	import flash.utils.setTimeout;
+	
 	import away3d.arcane;
-	import away3d.core.base.*;
-	import away3d.core.geom.*;
-
-	import flash.events.*;
-	import flash.geom.*;
-	import flash.utils.*;
+	import away3d.core.base.Vertex;
+	import away3d.core.geom.NGon;
+	import away3d.core.geom.Plane3D;
+	
+	import satprof.EventUtil;
 
 	use namespace arcane;
 	
-	public final class BSPPortal extends EventDispatcher
+	public final class BSPPortal extends EventUtil
 	{
 		public static const RECURSED_PORTAL_COMPLETE : String = "RecursedPortalComplete";
 		public var index : int;

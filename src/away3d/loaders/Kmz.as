@@ -70,7 +70,7 @@ package away3d.loaders
 				if((entry.name.indexOf(".jpg")>-1 || entry.name.indexOf(".png")>-1) && entry.name.indexOf("images/")>-1) {
 					var _loader:Loader = new Loader();
 					_loader.name = "../" + entry;
-					_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loadBitmapCompleteHandler);
+					addListener(this, _loader.contentLoaderInfo, Event.COMPLETE, loadBitmapCompleteHandler);
 					_loader.loadBytes(data);
 				}
 			}

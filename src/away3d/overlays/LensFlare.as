@@ -1,14 +1,18 @@
 package away3d.overlays
 {
-	import away3d.cameras.*;
-	import away3d.core.base.*;
+	import flash.display.Sprite;
+	import flash.geom.ColorTransform;
+	import flash.geom.Point;
+	import flash.geom.Vector3D;
 	
-	import flash.geom.*;
-	import flash.display.*;
+	import away3d.cameras.Camera3D;
+	import away3d.core.base.Object3D;
+	
+	import satprof.SpriteUtil;
 	
 	//import gs.TweenMax;
 	
-	public class LensFlare extends Sprite implements IOverlay
+	public class LensFlare extends SpriteUtil implements IOverlay
 	{
 		public static const BURN_METHOD_COLOR_TRANSFORM:uint = 0;
 		public static const BURN_METHOD_BRIGHTNESS:uint = 1;

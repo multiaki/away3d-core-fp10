@@ -42,8 +42,8 @@ package away3d.graphs.bsp.builder
 		override protected function buildPart() : void
 		{
 			_iterator = new VectorIterator(Vector.<Object>(portals));
-			_iterator.addEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onIterationComplete);
-			_iterator.addEventListener(IteratorEvent.ASYNC_ITERATION_TICK, onIterationTick);
+			addListener(_iterator, IteratorEvent.ASYNC_ITERATION_COMPLETE, onIterationComplete);
+			addListener(_iterator, IteratorEvent.ASYNC_ITERATION_TICK, onIterationTick);
 			_iterator.performMethodAsync(buildBevelPlanes, maxTimeOut);
 		}
 

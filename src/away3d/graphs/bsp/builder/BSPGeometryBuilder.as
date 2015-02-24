@@ -13,7 +13,7 @@ package away3d.graphs.bsp.builder
 
 	use namespace arcane;
 
-	internal class BSPGeometryBuilder extends EventDispatcher implements IBSPBuilder
+	internal class BSPGeometryBuilder extends EventUtil implements IBSPBuilder
 	{
 		private var _tree : BSPTree;
 		private var _progressEvent : BSPBuildEvent;
@@ -216,9 +216,9 @@ package away3d.graphs.bsp.builder
 
 			if (_buildNode) {
 				_buildNode.nodeId = _numNodes++;
-				_buildNode.addEventListener(Event.COMPLETE, buildStep, false, 0, true);
-				_buildNode.addEventListener(BSPBuildEvent.BUILD_WARNING, propagateBuildEvent, false, 0, true);
-				_buildNode.addEventListener(BSPBuildEvent.BUILD_ERROR, propagateBuildEvent, false, 0, true);
+				addListener(_buildNode, Event.COMPLETE, buildStep, false, 0, true);
+				addListener(_buildNode, BSPBuildEvent.BUILD_WARNING, propagateBuildEvent, false, 0, true);
+				addListener(_buildNode, BSPBuildEvent.BUILD_ERROR, propagateBuildEvent, false, 0, true);
 				_buildNode.build();
 			}
 			else

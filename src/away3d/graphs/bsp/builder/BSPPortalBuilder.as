@@ -52,8 +52,8 @@ package away3d.graphs.bsp.builder
 
 			_index = 0;
 			_treeIterator = new TreeIterator(rootNode);
-			_treeIterator.addEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onBuildPortalsComplete);
-			_treeIterator.addEventListener(IteratorEvent.ASYNC_ITERATION_TICK, onBuildPortalsTick);
+			addListener(_treeIterator, IteratorEvent.ASYNC_ITERATION_COMPLETE, onBuildPortalsComplete);
+			addListener(_treeIterator, IteratorEvent.ASYNC_ITERATION_TICK, onBuildPortalsTick);
 			_treeIterator.performMethodAsync(createPortalStep, maxTimeOut);
 		}
 
@@ -99,8 +99,8 @@ package away3d.graphs.bsp.builder
 			updateNextStep();
 			
 			_portalIterator = new VectorIterator(Vector.<Object>(_portals));
-			_portalIterator.addEventListener(IteratorEvent.ASYNC_ITERATION_COMPLETE, onRemoveOneSidedComplete);
-			_portalIterator.addEventListener(IteratorEvent.ASYNC_ITERATION_TICK, onRemoveOneSidedTick);
+			addListener(_portalIterator, IteratorEvent.ASYNC_ITERATION_COMPLETE, onRemoveOneSidedComplete);
+			addListener(_portalIterator, IteratorEvent.ASYNC_ITERATION_TICK, onRemoveOneSidedTick);
 			_portalIterator.performMethodAsync(removeOneSidedStep, maxTimeOut);
 		}
 

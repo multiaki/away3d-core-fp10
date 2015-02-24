@@ -1,22 +1,28 @@
 package away3d.graphs.bsp
 {
-	import away3d.arcane;
-	import away3d.core.base.*;
-	import away3d.core.geom.*;
-	import away3d.core.traverse.*;
-	import away3d.events.*;
-	import away3d.graphs.*;
+	import flash.events.Event;
+	import flash.geom.Vector3D;
+	import flash.utils.getTimer;
+	import flash.utils.setTimeout;
 	
-	import flash.events.*;
-	import flash.geom.*;
-	import flash.utils.*;
+	import away3d.arcane;
+	import away3d.core.base.Face;
+	import away3d.core.base.Mesh;
+	import away3d.core.base.Object3D;
+	import away3d.core.geom.NGon;
+	import away3d.core.geom.Plane3D;
+	import away3d.core.traverse.Traverser;
+	import away3d.events.BSPBuildEvent;
+	import away3d.graphs.ITreeNode;
+	
+	import satprof.EventUtil;
 	
 	use namespace arcane;
 	
 	/**
 	 * BSPNode is a single node in a BSPTree
 	 */
-	public final class BSPNode extends EventDispatcher implements ITreeNode
+	public final class BSPNode extends EventUtil implements ITreeNode
 	{
 		public var leafId : int = -1;
 		public var nodeId : int;

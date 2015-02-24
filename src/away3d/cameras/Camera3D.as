@@ -404,7 +404,7 @@ package away3d.cameras
 		 */
         public function addOnCameraUpdate(listener:Function):void
         {
-            addEventListener(CameraEvent.CAMERA_UPDATED, listener, false, 0, false);
+            addListener(this, CameraEvent.CAMERA_UPDATED, listener, false, 0, false);
         }
 		
 		/**

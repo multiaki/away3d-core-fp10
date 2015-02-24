@@ -1,10 +1,12 @@
 package away3d.primitives.data
 {
-	import away3d.core.utils.Init;
-	import away3d.events.*;
-	import away3d.materials.*;
-	
 	import flash.events.EventDispatcher;
+	
+	import away3d.core.utils.Init;
+	import away3d.events.MaterialEvent;
+	import away3d.materials.Material;
+	
+	import satprof.EventUtil;
     
 	 /**
 	 * Dispatched when the cube materials object has one of it's materials updated.
@@ -19,7 +21,7 @@ package away3d.primitives.data
 	 * @see away3d.primitives.Cube
 	 * @see away3d.primitives.Skybox
 	 */
-	public class CubeMaterialsData extends EventDispatcher
+	public class CubeMaterialsData extends EventUtil
 	{
 		private var _materialchanged:MaterialEvent;
 		private var _left:Material;
@@ -182,7 +184,7 @@ package away3d.primitives.data
 		 */
         public function addOnMaterialChange(listener:Function):void
         {
-            addEventListener(MaterialEvent.MATERIAL_CHANGED, listener, false, 0, false);
+            addListener(this, MaterialEvent.MATERIAL_CHANGED, listener, false, 0, false);
         }
 		
 		/**

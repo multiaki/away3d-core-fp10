@@ -24,7 +24,7 @@ import flash.display.*;
 
 import away3d.test.*;
 
-class ButtonState extends Sprite
+class ButtonState extends SpriteUtil
 {
     public function ButtonState(pwidth:int, pheight:int, text:String = null, color:int = 0)
     {
